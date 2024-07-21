@@ -22,16 +22,36 @@ import com.example.trashclassification.pages.PreWelcomeScreen
 import com.example.trashclassification.ui.theme.TrashClassificationTheme
 
 class MainActivity : ComponentActivity() {
-
+private val cameraPermissionRequest =
+    registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+        if (isGranted) {
+            // Camera related code
+        } else {
+            // Camera permission denied
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        when (PackageManager.PERMISSION_GRANTED) {
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) -> {
+                // Camera permission granted
+                // Implement camera related code
+            }
+            else -> {
+                cameraPermissionRequest.launch(Manifest.permission.CAMERA)
+            }
+        }
+
         enableEdgeToEdge()
         setContent {
             val navController = rememberNavController()
             TrashClassificationTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MyAppNavigation(modifier = Modifier.padding(innerPadding))
-                }
+                MainScreen()
             }
         }
     }

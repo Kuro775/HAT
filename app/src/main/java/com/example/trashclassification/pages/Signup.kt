@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -41,7 +42,7 @@ import androidx.navigation.NavController
 import com.example.trashclassification.ui.theme.TrashClassificationTheme
 
 @Composable
-fun SignupScreen(modifier: Modifier = Modifier, navController: NavController) {
+fun SignupScreen(modifier: Modifier = Modifier, navController: NavController, paddingValues: PaddingValues) {
     var email by remember {
         mutableStateOf("")
     }
@@ -59,7 +60,7 @@ fun SignupScreen(modifier: Modifier = Modifier, navController: NavController) {
     }
 
     Box(
-        modifier.fillMaxSize()
+        modifier.padding(paddingValues).fillMaxSize()
     ){
         Text(
             text = "Create an account",
