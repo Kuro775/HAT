@@ -1,5 +1,6 @@
 package com.example.trashclassification.pages
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -28,11 +29,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.trashclassification.R
 import com.example.trashclassification.ui.theme.TrashClassificationTheme
 @Composable
 fun PreWelcomeScreen(modifier: Modifier = Modifier, navController: NavController, paddingValues: PaddingValues){
-    Box(modifier = modifier.padding(paddingValues).fillMaxSize()) {
+    Box(modifier = modifier
+        .padding(paddingValues)
+        .fillMaxSize()) {
         Image(
             painter = painterResource(id = R.drawable.welcome_bg),
             contentDescription = "Welcome background",
@@ -70,7 +74,7 @@ fun PreWelcomeScreen(modifier: Modifier = Modifier, navController: NavController
                     .align(Alignment.CenterHorizontally)
                     .width(330.dp)
                     .height(55.dp),
-                colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primaryContainer)
+                colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary)
             ){
                 Text(text = "Explore", style = TextStyle(fontSize = 18.sp))
             }
@@ -91,7 +95,8 @@ fun PreWelcomeScreen(modifier: Modifier = Modifier, navController: NavController
 //)
 //@Composable
 //fun WelcomePreview() {
+//    val navController = rememberNavController()
 //    TrashClassificationTheme {
-//        WelcomeScreen()
+//        WelcomeScreen(modifier = Modifier, navController = navController, )
 //    }
 //}

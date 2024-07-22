@@ -15,19 +15,22 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.trashclassification.ui.theme.TrashClassificationTheme
 
 
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
-    Scaffold(
-        bottomBar = { BottomBar(navController = navController)}
-    ) {innerPadding ->
-        NavGraph(
-            navController = navController,
-            modifier = modifier,
-            paddingValues = innerPadding
-        )
+    TrashClassificationTheme {
+        Scaffold(
+            bottomBar = { BottomBar(navController = navController)}
+        ) {innerPadding ->
+            NavGraph(
+                navController = navController,
+                modifier = modifier,
+                paddingValues = innerPadding
+            )
+        }
     }
 
 //    Scaffold(

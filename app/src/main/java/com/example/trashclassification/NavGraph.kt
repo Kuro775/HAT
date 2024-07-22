@@ -19,7 +19,7 @@ import com.example.trashclassification.pages.WelcomeScreen
 fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier, paddingValues: PaddingValues) {
     NavHost(
         navController = navController,
-        startDestination = "pre_welcome"
+        startDestination = "login"
     ) {
         composable(route = NavItem.Home.route){
             HomeScreen( modifier = modifier, navController = navController, paddingValues = paddingValues)
