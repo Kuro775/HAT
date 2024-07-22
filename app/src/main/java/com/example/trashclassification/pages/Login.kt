@@ -37,6 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.trashclassification.ui.theme.TrashClassificationTheme
 
 @Composable
@@ -187,10 +188,11 @@ fun LoginScreen(modifier: Modifier = Modifier, navController: NavController) {
     }
 }
 
-//@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
-//@Composable
-//fun LoginScreenPreview(){
-//    TrashClassificationTheme {
-//        LoginScreen()
-//    }
-//}
+@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
+@Composable
+fun LoginScreenPreview(){
+    val navController = rememberNavController()
+    TrashClassificationTheme {
+        LoginScreen(navController = navController)
+    }
+}

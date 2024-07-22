@@ -1,5 +1,6 @@
 package com.example.trashclassification.pages
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.trashclassification.R
 import com.example.trashclassification.ui.theme.TrashClassificationTheme
 @Composable
@@ -82,14 +84,14 @@ fun PreWelcomeScreen(modifier: Modifier = Modifier, navController: NavController
 //    uiMode = Configuration.UI_MODE_NIGHT_NO,
 //    name = "DefaultPreviewLight"
 //)
-//@Preview(
-//    showBackground = true,
-//    uiMode = Configuration.UI_MODE_NIGHT_NO,
-//    name = "DefaultPreviewDark"
-//)
-//@Composable
-//fun WelcomePreview() {
-//    TrashClassificationTheme {
-//        WelcomeScreen()
-//    }
-//}
+@Preview(
+    showBackground = true,
+    name = "DefaultPreviewDark"
+)
+@Composable
+fun WelcomePreview() {
+    val navController = rememberNavController()
+    TrashClassificationTheme {
+        PreWelcomeScreen(navController = navController)
+    }
+}

@@ -1,6 +1,5 @@
 package com.example.trashclassification.pages
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -38,6 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.trashclassification.ui.theme.TrashClassificationTheme
 
 @Composable
@@ -210,10 +210,11 @@ fun SignupScreen(modifier: Modifier = Modifier, navController: NavController) {
     }
 }
 
-//@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
-//@Composable
-//fun SignupPreview(){
-//    TrashClassificationTheme {
-//        SignupScreen()
-//    }
-//}
+@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
+@Composable
+fun SignupScreenPreview(){
+    val navController = rememberNavController()
+    TrashClassificationTheme {
+        SignupScreen(navController = navController)
+    }
+}

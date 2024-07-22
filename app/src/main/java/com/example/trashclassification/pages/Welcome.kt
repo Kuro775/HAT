@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.trashclassification.R
 import com.example.trashclassification.ui.theme.TrashClassificationTheme
 
@@ -79,11 +80,11 @@ fun WelcomeScreen(modifier: Modifier = Modifier, navController: NavController) {
         }
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun PreviewWelcome(){
-//    TrashClassificationTheme {
-//        WelcomeScreen()
-//    }
-//}
+@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
+@Composable
+fun WelcomeScreenPreview(){
+    val navController = rememberNavController()
+    TrashClassificationTheme {
+        WelcomeScreen(navController = navController)
+    }
+}
