@@ -1,29 +1,38 @@
 package com.example.trashclassification
 
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavDestination
-import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.trashclassification.composable.BottomBar
 import com.example.trashclassification.ui.theme.TrashClassificationTheme
-
 
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
+
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+
+    val bottomBarState = rememberSaveable{
+        mutableStateOf(true)
+    }
+
+    when(navBackStackEntry?.destination?.route) {
+        NavItem.Home.route, NavItem.Camera.route, NavItem.Profile.route -> {
+            bottomBarState.value = true
+        }
+        else -> {
+            bottomBarState.value = false
+        }
+    }
     TrashClassificationTheme {
         Scaffold(
-            bottomBar = { BottomBar(navController = navController)}
+            bottomBar = { BottomBar(navController = navController, bottomBarState = bottomBarState)}
         ) {innerPadding ->
             NavGraph(
                 navController = navController,
@@ -42,53 +51,6 @@ fun MainScreen(modifier: Modifier = Modifier) {
 //            paddingValues = innerPadding
 //        )
 //    }
-}
-
-@Composable
-fun BottomBar(navController: NavHostController) {
-    val screens = listOf(
-        NavItem.Home,
-        NavItem.Camera,
-        NavItem.Profile
-    )
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination
-
-    NavigationBar {
-        screens.forEach { screen ->
-            AddItem(
-                screen = screen,
-                currentDestination = currentDestination,
-                navController = navController
-            )
-        }
-    }
-}
-
-@Composable
-fun RowScope.AddItem(
-    screen: NavItem,
-    currentDestination: NavDestination?,
-    navController: NavHostController
-) {
-    NavigationBarItem(
-        label = {
-            Text(text = screen.label)
-        },
-        icon = {
-            Icon(
-                imageVector = screen.icon,
-                contentDescription = "Navigation Icon"
-            )
-        },
-        selected = currentDestination?.hierarchy?.any {
-            it.route == screen.route
-        } ?: false,
-        onClick = {
-            navController.navigate(screen.route)
-        },
-        alwaysShowLabel = false
-    )
 }
 
 @Preview
